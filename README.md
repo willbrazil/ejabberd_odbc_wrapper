@@ -1,4 +1,4 @@
-ejabberd_odbc_wrapper
+ejabberd_odbc_wrapper (UNDER DEVELOPMENT)
 =====================
 
 Purpose:
