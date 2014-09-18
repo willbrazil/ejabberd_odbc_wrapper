@@ -62,7 +62,7 @@ I tried making things a little simples with ejabberd_odbc_wrapper.
                               ?TABLE, 
                               [?TABLE_COLUMN_JID],
                               <<"WHERE ?='?'">>,
-                              [{?ROSTERUSERS_TABLE_COLUMN_USERNAME, Username}]
+                              [{?TABLE_COLUMN_USERNAME, Username}]
                               ),
                               
 
