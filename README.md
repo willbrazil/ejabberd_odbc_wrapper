@@ -1,15 +1,25 @@
 ejabberd_odbc_wrapper
 =====================
 
+Purpose:
+-----------------
+Simplify ejabberd_odbc usage and increase code maintainability.
+
+
+
 Before you read:
+-----------------
 I'm very new to Eralng/ejabberd. I'm 100% open to feedback! I'm posting this here because I really want to learn from you guys! I hope you find this module helpful. This module is also a WIP. I wrote it yesterday and I know there's so much to be done still!
 
+
+ejabberd_odbc:sql_query
+-----------------
 
 The flexibility that ejabberd_odbc:sql_query/2 gives you is great. Nonetheless, with great power comes great responsability.
 
 ejabberd_odbc:sql_query/2 looks like this:
 
-ejabberd_odbc:sql_query( 
+      ejabberd_odbc:sql_query( 
       LServer,
       io_lib:format("select username from users " ++
                     "where username like '~s%' " ++
@@ -20,7 +30,7 @@ As you can see, it's very powerful since you can easily build your custom SQL qu
 
 Let's see...
 
-ejabberd_odbc:sql_query(Server,
+      ejabberd_odbc:sql_query(Server,
                         [
                           <<"INSERT INTO ">>,?TABLE,<<" (
                           ">>,?TABLE_COLUMN_USERNAME,<<",
@@ -39,22 +49,20 @@ Ouch... it hurt my eyes just to look at it. Things seem to be all over the place
 
 Constants are great. They do solve the "renaming columns" problem but they definitely make your code a bit less readable.
 
+ejabberd_odbc_wrapper
+-----------------
+
 I tried making things a little simples with ejabberd_odbc_wrapper.
 
-%%%------
-%%% select(binary(), table_name(), table_columns(), sql_query(), binary_selection_args())
-%%%------
+      %%%------
+      %%% select(binary(), table_name(), table_columns(), sql_query(), binary_selection_args())
+      %%%------
 
-ejabberd_odbc_wrapper:select(Server,
-
+      ejabberd_odbc_wrapper:select(Server,
                               ?TABLE, 
-                              
                               [?TABLE_COLUMN_JID],
-
                               <<"WHERE ?='?'">>,
-                              
                               [{?ROSTERUSERS_TABLE_COLUMN_USERNAME, Username}]
-                              
                               ),
                               
 
